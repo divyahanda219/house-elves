@@ -17,7 +17,7 @@ library("stringr")
 gc_cont<- function(GC){
   A <- str_count(dataa$dnaseq, "G")
   B <- str_count(dataa$dnaseq, "c")
-output <- (A+B)/str_count(dataa)*100
+output <- ((A+B)/str_length(dataa)*100)
 return(output)
 }
 gc_cont(dataa$dnaseq)
@@ -27,3 +27,15 @@ get_size_class <- function(ear_length){
    ear_lengths <- ifelse(ear_length > 10, "large", "small")
    return(ear_lengths)
 }
+
+## to get earlength for each individual
+Category<- sapply(dataa$earlength, get_size_class)
+
+##to get gc content for each individual
+Content<- sapply(dataa$dnaseq, gc_cont)
+
+##create a dataframe
+result<- data.frame(dataa$id, Category,Content)
+print(result)
+
+write.csv(result, file = "data/result.csv")
