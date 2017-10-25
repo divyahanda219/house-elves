@@ -20,5 +20,6 @@ gc_cont<- function(GC){
 output <- (A+B)/str_count(dataa)*100
 return(output)
 }
+
 gc_cont(dataa$dnaseq)
 
