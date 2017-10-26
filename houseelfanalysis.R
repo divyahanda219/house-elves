@@ -15,9 +15,9 @@ print(dataa)
 library("stringr")
 
 gc_cont<- function(GC){
-  A <- str_count(dataa$dnaseq, "G")
-  B <- str_count(dataa$dnaseq, "c")
-output <- ((A+B)/str_length(dataa)*100)
+  A <- str_count(GC, "G")
+  B <- str_count(GC, "c")
+output <- ((A+B)/str_length(GC)*100)
 return(output)
 }
 gc_cont(dataa$dnaseq)
